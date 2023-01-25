@@ -1,7 +1,7 @@
 <?php
 
 class Product{
-    private $price;
+    protected $price;
 
     public function __construct($price)
     {
@@ -42,12 +42,31 @@ class Category extends Product{
     }
 
     public function getHtmlCtegory(){
-        echo '<div>' . $this->category . ', '. $this->size . $this->getHtml() . ' €</div>';
+        echo '<div>' . $this->category . ', '. $this->size . $this->getHtml() . '</div>';
     }
 }
+
+// class Type {
+//     private $type;
+
+//     public function __construct($type,)
+//     {
+//         $this->setType($type);
+//     }
+
+//     public function setType($type){
+//         $this->type = $type;
+//     }
+//     public function getType(){
+//         return $this->type;
+//     }
+//     public 
+// }
 
 $price1 = new Product(20);
 $price1->getHtml();
 
 $cat1 = new Category('cat', 'small' ,20);
 $cat1->getHtmlCtegory();
+
+// $newType = new Type('jjj');
