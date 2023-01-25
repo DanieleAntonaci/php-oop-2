@@ -1,72 +1,75 @@
 <?php
 
 class Product{
-    protected $price;
-
-    public function __construct($price)
+    private $price;
+    private $typeOfAnimal;
+    private $petSize;
+    public function __construct($typeOfAnimal, $petSize, $price)
     {
+        $this->setTypeOfAnimal($typeOfAnimal);
+        $this->setPetSize($petSize);
         $this->setPrice($price);   
-    }
+     }
+ 
+     public function setTypeOfAnimal($typeOfAnimal){
+         $this->typeOfAnimal = $typeOfAnimal;
+     }
+     public function getTypeOfAnimal(){
+         return $this->typeOfAnimal;
+     }
+     public function setPetSize($petSize){
+         $this->petSize = $petSize;
+     }
+     public function getPetSize(){
+         return $this->petSize;
+     }
     public function setPrice($price){
         $this->price = $price;
     }
     public function getPrice(){
         return $this->price;
     }
-    public function getHtml(){
-        echo '<div>' . $this->price . ' €</div>';
-    }
-}
-
-class Category extends Product{
-    private $category;
-    private $size;
-    public function __construct($category, $size, $price)
-   {
-       $this->setCategory($category);
-       $this->setSize($size);
-       parent::__construct($price); 
-    }
-
-    public function setCategory($category){
-        $this->category = $category;
-    }
-    public function getCategory(){
-        return $this->category;
-    }
-    public function setSize($size){
-        $this->size = $size;
-    }
-    public function getSize(){
-        return $this->size;
-    }
-
     public function getHtmlCtegory(){
-        echo '<div>' . $this->category . ', '. $this->size . $this->getHtml() . '</div>';
+        echo '<div>' . $this->typeOfAnimal . ', '. $this->petSize .' '. $this->price . ' €</div>';
     }
 }
 
-// class Type {
-//     private $type;
 
-//     public function __construct($type,)
-//     {
-//         $this->setType($type);
-//     }
 
-//     public function setType($type){
-//         $this->type = $type;
-//     }
-//     public function getType(){
-//         return $this->type;
-//     }
-//     public 
-// }
+class Food extends Product {
+    private $food;
+    private $expirationDate;
+    private $price;
 
-$price1 = new Product(20);
-$price1->getHtml();
+    public function __construct($food,$expirationDate, $typeOfAnimal, $petSize, $price)
+    {
+        $this->setFood($food);
+        $this->setExpirationDate($expirationDate);
+        parent::__construct($typeOfAnimal, $petSize, $price);
+    }
 
-$cat1 = new Category('cat', 'small' ,20);
+    public function setFood($food){
+    $this->food = $food;
+    }
+    public function getFood(){
+        return $this->food;
+    }
+    public function setExpirationDate($expirationDate){
+    $this->expirationDate = $expirationDate;
+    }
+    public function getExpirationDate(){
+        return $this->expirationDate;
+    }
+    public function getHtmlFood(){
+        echo '<div>' . $this->food . ', data di scadenza: '. $this->expirationDate . $this->getTypeOfAnimal(). $this->getPetSize() . $this->getPrice() . '</div>';
+    }
+}
+
+// $price1 = new Product(20);
+// $price1->getHtml();
+
+$cat1 = new Product('cat', 'small' ,20);
 $cat1->getHtmlCtegory();
 
-// $newType = new Type('jjj');
+$newType = new Food('Croccantini', '20-01-2022', 'dog', 'small', 20);
+$newType->getHtmlFood();
